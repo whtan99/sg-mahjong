@@ -1,0 +1,242 @@
+﻿<html>
+<head>
+    <title>SG Mahjong online (multiplayer)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">SG Mahjong online</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Scoring
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item">
+                            Currently is all pay, future updates may bring about the option for shooter pay
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">1 台 = 10/20 points</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">
+                            Currently only these are supported:<br />
+                            碰碰胡 - 2 台<br />
+                            半色 - 2 台<br />
+                            一色 - 4 台<br />
+                            臭平胡 - 1 台<br />
+                            平胡 - 4 台<br />
+                            混老头 - 4 台<br />
+                            清老头 - 5 台<br />
+                            十三幺 - 5 台<br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">
+                            *咬到 - 10 points<br />
+                            *正花 - 10 points<br />
+                            *一台花 - 10 points<br />
+                            *明杠 - 10 points<br />
+                            *暗杠 - 20 points<br />
+                            *Calculated at the end of a round<br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">For any feedback/issues, please email us at mahjongsgbeta@gmail.com</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Controls
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">
+                            1-1st Tile Discard <br />
+                            2-2nd Tile Discard<br />
+                            3-3rd Tile Discard<br />
+                            4-4th Tile Discard<br />
+                            5-5th Tile Discard<br />
+                            6-6th Tile Discard<br />
+                            7-7th Tile Discard<br />
+                            8-8th Tile Discard<br />
+                            9-9th Tile Discard<br />
+                            0-10th Tile Discard<br />
+                            Q-11th Tile Discard<br />
+                            W-12th Tile Discard<br />
+                            E-13th Tile Discard<br />
+                            R-14th Tile Discard<br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">P - 碰 (if valid)<br /></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">G - 槓 (if valid)<br /></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">
+                            Z - 吃. Take Discard Tile, use as left (6 discarded, forms 678)<br />
+                            X - 吃. Take Discard Tile, use as middle (7 discarded, forms 678)<br />
+                            C - 吃. Take Discard Tile, use as right (8 discarded, forms 678)<br /><br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"> H - 胡 (if valid)<br /></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">Note: The dealer is identified by the person holding the red dice</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="how-to-play">How to play</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="terms">Terms & Conditions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <img src="/static/mahjong_pics_v1/your_ad_here.png" , alt="Adspace" id="banner_ad" style="display:block; margin:auto; margin-top:1em; width:42em; height:7em;" />
+    <br />
+    <div style="margin-left:4em; margin-right:4em;">
+        <strong>How to play Singapore style Mahjong (credits: Singapore Mahjong Wikipedia page)</strong>
+        <br />
+        The Singaporean Mahjong tile system consists of 148 tiles due to the additional Animal tile set, thus slightly different from that of other regional Mahjong tile-sets. Therefore, the rules of the game somewhat vary from other scoring systems in the region. The stacking of tiles will be 19 stacks for the dealer (East) and the player opposite (West), 18 stacks for the rest. The Dead Wall (王牌wáng-pái) is 15 tiles. The tile set is described as follows: <br />
+        <br />
+        Suited Tiles<br />
+        <strong>These tiles run from One to Nine. There are 4 of each tile in every set.</strong><br />
+        <br />
+        The dots suit (Chinese: 筒子; pinyin: tǒngzǐ)<br />
+        <br />
+        <img src="/static/mahjong_pics_v1/1_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/2_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/3_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/4_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/5_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/6_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/7_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/8_tong.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/9_tong.jpg" height="48" width="36"><br />
+        <br />
+        The bamboo suit (Chinese: 索子; pinyin: suǒzǐ)<br />
+        <br />
+        <img src="/static/mahjong_pics_v1/1_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/2_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/3_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/4_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/5_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/6_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/7_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/8_bamboo.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/9_bamboo.jpg" height="48" width="36"><br />
+        <br />
+        The character suit (simplified Chinese: 万子; traditional Chinese: 萬子; pinyin: wànzǐ)<br />
+        <br />
+        <img src="/static/mahjong_pics_v1/1_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/2_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/3_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/4_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/5_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/6_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/7_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/8_wan.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/9_wan.jpg" height="48" width="36"><br />
+        <br />
+        <strong>Honour Tiles</strong><br />
+        Honour Tiles (Chinese: 字牌; pinyin: zìpái/Chinese: 大牌; pinyin: dàpái) consists of 4 Wind tiles & 3 Dragon tiles.<br />
+        <br />
+        Wind tiles (simplified Chinese: 四风牌; traditional Chinese: 四風牌; pinyin: sìfēngpái)<br />
+        <br />
+        <img src="/static/mahjong_pics_v1/dong_feng.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/nan_feng.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/xi_feng.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/bei_feng.jpg" height="48" width="36"><br />
+        From left to right: East, South, West, North<br />
+        <br />
+        <strong>Dragon tiles (三元牌, pinyin sān yuán pái)</strong><br />
+        <br />
+        <img src="/static/mahjong_pics_v1/red_dragon.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/green_dragon.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/white_dragon.jpg" height="48" width="36"><br />
+        From left to right: Red Dragon, Green Dragon, White Dragon<br />
+        <br />
+        <strong>Bonus (flower/animal) Tiles</strong><br />
+        Flower set (花牌 huā pái) and Season set (季牌 jì pái)<br />
+        <br />
+        <img src="/static/mahjong_pics_v1/red_1_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/red_2_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/red_3_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/red_4_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/blue_1_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/blue_2_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/blue_3_flower.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/blue_4_flower.jpg" height="48" width="36"><br />
+        From left to right: Plum, Orchid, Chrysanthemum, Bamboo, Spring, Summer, Autumn, Winter<br />
+        <br />
+        <strong>Animal Tiles (禽兽牌qín shòu pái / 动物牌dòng wù pái)</strong><br />
+        <br />
+        <img src="/static/mahjong_pics_v1/cat.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/mouse.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/chicken.jpg" height="48" width="36"><img src="/static/mahjong_pics_v1/caterpillar.jpg" height="48" width="36"><br />
+        <br />
+        From left to right: Cat, Rat, Rooster, Centipede<br />
+        <br />
+        <br />
+        <strong>Tai (台)</strong><br />
+        Tai (台) are scored from the difficulty of gathering the winning hand. For our game, a value of 10 points is awarded to a one-point winning hand. Subsequently, for each additional tai scored, this value is accordingly doubled.<br />
+        <br />
+        There is a maximum scoring limit of five tai. This tai limit (simply known as the limit), and will be used to describe the tai awarded by certain tile-combinations from now on. In other words, a certain tile combination that awards the limit means that it scores the maximum number of tai, as agreed upon before the game.<br />
+        <br />
+        Furthermore, the party who is guilty of discarding the tile which another party then takes to complete a winning hand has to pay double the agreed payout. Another situation where the winning player receives double the agreed payout is when he draws the winning tile by himself/herself i.e. Self-Pick (自摸zì-mō). All players will then pay double the amount.<br />
+        <br />
+        <strong>Triplet of any Dragon Tile (元 yuán)</strong><br />
+        Having a triplet of any Dragon Tile (元yuán) scores 1 tai. This triplet can be obtained by Pong (碰pèng), Kong (杠;槓gàng), or simply having these 3 tiles in your hidden hand.<br />
+        <br />
+        <strong>Winds (风fēng)</strong><br />
+        Having a triplet of the seat wind or the prevailing wind scores 1 tai. This triplet can be obtained by Pung (碰pèng), Kong (杠gàng ), or simply having these three tiles in your hidden hand.<br />
+        If the Prevailing Wind (圈风quān-fēng) happens to coincide with your Seat Wind (门风mén-fēng), and you manage to obtain a triplet of that wind, you score 2 tai. For example, if the prevailing wind is East and a player whose seat wind is East, a triplet of East by the player will score 2 tai upon Mahjong.<br />
+        If there is a triplet of both the Seat Wind (门风mén-fēng) and the Prevailing Wind (圈风quān-fēng), you score 2 tai. For example, if the Prevailing Wind (圈风quān-fēng) is East and a player whose Seat Wind (门风mén-fēng) is South, a triplet of East and a triplet of South by the player will score 2 tai (1 tai for each triplet) upon Mahjong.<br />
+        <br />
+        <strong>Animal Tiles</strong><br />
+        Each animal tile obtained scores 1 tai. One extra tai (for a total of 5) is awarded if all 4 animals are collected.<br />
+        <br />
+        <strong>Instant payment</strong><br />
+        There will be a one-time payout by all playing parties to the party who collects either<br />
+        <br />
+        a) Both the cat tile and the mouse tile.<br />
+        <br />
+        b) Both the chicken tile and the centipede tile.<br />
+        <br />
+        c) Complete flower group (一台花)<br />
+        <br />
+        d) Flower tile matching the Seat Wind (正花)<br />
+        <br />
+        The above events are known as yǎo-dào or zheng-hua.<br />
+        <br />
+        e) All the four animal tiles. This generally also earns double, 20 points.<br />
+        <br />
+        咬到 has 2 different meanings in the game.<br />
+        When any player opens their tiles in the beginning of the game and sees the combination of a) and/or b) and c), he will be considered to have 暗咬, and compensation will be 20 points for each combination of a), b) or c) (all these are cumulative). If after replenishment of tiles (补花bǔ-huā) happened and any of the a), b) or c) happens, then compensation will be 10 points for each combination of a), b) or c) (all these are cumulative).<br />
+        <br />
+        <strong>Triplets Hand (对对胡/碰碰胡)</strong><br />
+        A 'Triplets Hand' (对对胡 duì-duì-hú or 碰碰胡 pèng-pèng-hù) scores 2 points. All your tiles have to be 3 of the same tile, with one pair.<br />
+        It does not matter if your hand of tiles is a mixture of Exposed Pong (碰 pèng) tiles and triplets held within your hidden hand.<br />
+        <br />
+        <strong>Half Flush (混一色 or 半色)</strong><br />
+        A 'Half Flush Hand' (混一色 hún-yī-sè or 半色bàn-sè) scores 2 points.<br />
+        This combination simply requires<br />
+        <br />
+        1) a pure set of tiles from one single suit either from the 'Character' (万子), 'Dots' (筒子) or 'Bamboo' (索子) tile sets, plus<br />
+        <br />
+        2) any set of tiles from the 'Winds Tiles' (四风牌 sì fēng pái) or 'Dragon Tiles' (三元牌 sān yuán pái) suit.<br />
+        <br />
+        <strong>Full Flush (清一色)</strong><br />
+        If the set of tiles are entirely from one single suit only , then this combination is known as Full Flush Hand (清一色 qīng-yī-sè). This combination is awarded 4 points.<br />
+        <br />
+        <strong>Sequence Hand (平胡)</strong><br />
+        A Sequence Hand (平胡 píng-hù) scores 4 points. In addition, the winning player has to be waiting for at least 2 different tiles in order to win.<br />
+        <br />
+        A 'Sequence Hand' is one where a player obtains a winning hand of 4 sets of sequences (順子 shùn zǐ) and 1 pair of tiles, all from either the Character (万子 wàn-zǐ), Dots (筒子 tòng-zǐ) or Bamboo (索子 sùo-zǐ) tile sets. (However, special allowance is given to the nature of the pair of tiles. These pair of tiles can be from the Character tiles, Dots tiles or the Bamboo tiles, or any Winds (风 fēng) which is neither the Prevailing Wind (圈风 quān-fēng) nor the Seat Wind (门风 mén-fēng) of the winning player.<br />
+        A 'Sequence Hand' is considered difficult to amass because winning with this hand requires that (i) the player does not draw any animal or flower tiles. (ii) The player cannot win on a discarded tile by another player, if that discarded tile is an in-between tile (嵌张 qiàn zhāng), edge tile (边张 biān zhāng), or only one tile required to complete the pair (单钓 dān diào), i.e. All Single Wait (一飞 yī fēi / 单听 dān tīng) is not acceptable for this hand. Note: 2-Sided Wait or more is acceptable for this hand in Singapore. For example, 6, 7, 8 & 9 of the Dots tiles, waiting for 6 & 9 of the Dots tiles to win by forming a pair.<br />
+        <br />
+        Example: A player has the seven of the Dots tiles and the nine of the Dots tiles, he requires the eight of the Dots tiles to complete the winning hand. He cannot declare his combination of tiles to be a 'Sequence Hand' if another player discards the eight of the Dots tiles. That is, the four point awarded to the Sequence Hand does not count. He can, however, still win the game by virtue of other points he has already scored, by drawing animals for example. But, if he manages to draws the eight of the Dots tiles by himself (自摸 zì-mō), his winning combination is considered to be a 'Sequence Hand'.<br />
+        <br />
+        The point here to note is that, a player waiting for either an in-between tile, edge tile (an eight and a nine, waiting for a seven) or a single tile to complete the required pair can only claim a 'Sequence Hand' if he Self-Pick (自摸 zì-mō) that particular tile. If he is waiting for any two tiles (a two and a three, waiting for either a one or a four) to complete the winning hand, he can claim these tiles from any party who discards it.<br />
+        <br />
+        A special situation exists where a player cannot claim a 'Sequence Hand' even if he Self-Pick (自摸 zì-mō) the last required tile. This situation happens when a player melded all 4 sequences required by discards from other player, and is left with a single tile. In this event it is clear that he is awaiting that single tile to complete his hand, therefore it cannot be considered a 'Sequence Hand'.<br />
+        <br />
+        If a player manages to amass a combination of cards that adheres to the requirements set above, but has drawn flowers and/or animal tiles, then he can only claim a 'Lesser Sequence Hand' (小平胡 xiǎo-píng-hù / 臭平胡 chòu-píng-hù), which awards only 1 point, on top of any points awarded to him by the flower and/or animal tiles.<br />
+        <br />
+        <strong>Mixed Terminals (混老头)</strong><br />
+        A Mixed Terminals Hand (混老头hún-lǎo-tou), or commonly known as dà-pái-yī-jǐu (大牌一九) scores 4 points (2 for triplets and 2 for mixed terminals).<br />
+        <br />
+        This is a mixture of<br />
+        1. ones or nines (thus, terminals) from either of the wàn-zǐ (万子), tòng-zǐ (筒子) or suò-zǐ (索子)<br />
+        or<br />
+        2. either of the Winds tiles (风 fēng) or Dragon tiles (元 yuán).<br />
+        <br />
+        It must also fulfill the Triplets Hand (碰碰胡 pèng-pèng-hù) criteria. However, special situations, as described below, can arise from this.<br />
+        <br />
+        <strong>Pure Terminals (清老头)</strong><br />
+        The 'Pure Terminals Hand' (清老头qīng- lǎo-tou) is made up entirely of ones or nines from either of the wàn-zǐ (风子), tòng-zǐ (筒子) or suò zi (索子) tilesets. This condition is also known as 一九yī-jǐu. Due to its extreme rarity, this is awarded the limit.<br />
+        <br />
+        <strong>Thirteen Wonders (十三幺)</strong><br />
+        The "Thirteen Wonders" or "Thirteen Orphans" (十三幺 shí-sān-yāo) Hand score thirteen points, or the limit, whichever is the smaller number.<br />
+        This winning hand is considered to be one of the hardest to accomplish and therefore has priority to win from a tile from any player's discard, superseding players in front of you who could have gamed from that tile. Thirteen Wonders is the only hand that can snatch a 'Concealed Kong' (暗杠 àn-gàng). Furthermore, it can supersede a self-made winning tile even if the practitioner is waiting for the same card as the self-made winning tile (this only applies to pure Thirteen Wonders). Due to the immense difficulty in assembling this hand, all players pay double that of the limit, regardless if the hand was won on a self-picked (自摸) tile or not.<br />
+        <br />
+        <br />
+        <br />
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        if (window.innerWidth < 550) {
+            document.querySelector('#banner_ad').style.width = "24em"
+            document.querySelector('#banner_ad').style.height = "4em"
+        }
+    </script>
+</body>
+</html>

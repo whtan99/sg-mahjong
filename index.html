@@ -1,0 +1,620 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" id="meta_block">
+    <!-- Bidvertiser2029589 -->
+    <script type="text/javascript">var infolinks_pid = 3257333; var infolinks_wsid = 0;</script>
+    <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163888451-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-163888451-2');
+    </script>
+    <script data-ad-client="ca-pub-2370338679261348" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <title>SG Mahjong online (multiplayer)</title>
+    <link rel="shortcut icon" href="https://i.imgur.com/prE6IdG.jpg" />
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        canvas {
+            border: 10px solid olive;
+            image-rendering: auto;
+        }
+
+        .alert {
+            width: 80%;
+            text-align: center;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        #box {
+            width: 16em;
+            height: 600px;
+            padding: 1em;
+            margin-left: 2em;
+            border: 3px solid grey;
+            background-color: #fff;
+            overflow: auto;
+            direction: ltr;
+            text-align: left;
+            display: none;
+        }
+    </style>
+    <meta name="propeller" content="9ed141148d06a35d5c865375c4fce4de">
+</head>
+<body style="width:100%; text-align:center;">
+    <!--to preload images such that ctx.drawImage can access-->
+    <div class="hidden">
+        <script>
+            var images = new Array()
+            function preload() {
+                for (var i = 0; i < preload.arguments.length; i++) {
+                    images[i] = new Image()
+                    images[i].src = preload.arguments[i]
+                }
+            }
+            preload(
+                "/static/mahjong_pics_v1/tile_fd.jpg",
+                "/static/mahjong_pics_v1/tile_fd_shifted.jpg",
+                "/static/mahjong_pics_v1/1_tong.jpg", //1 tong
+                "/static/mahjong_pics_v1/2_tong.jpg", // 2 tong
+                "/static/mahjong_pics_v1/3_tong.jpg", //3 tong
+                "/static/mahjong_pics_v1/4_tong.jpg", //4 tong
+                "/static/mahjong_pics_v1/5_tong.jpg",
+                "/static/mahjong_pics_v1/6_tong.jpg",
+                "/static/mahjong_pics_v1/7_tong.jpg",
+                "/static/mahjong_pics_v1/8_tong.jpg",
+                "/static/mahjong_pics_v1/9_tong.jpg",
+                "/static/mahjong_pics_v1/1_bamboo.jpg",
+                "/static/mahjong_pics_v1/2_bamboo.jpg",
+                "/static/mahjong_pics_v1/3_bamboo.jpg",
+                "/static/mahjong_pics_v1/4_bamboo.jpg",
+                "/static/mahjong_pics_v1/5_bamboo.jpg",
+                "/static/mahjong_pics_v1/6_bamboo.jpg",
+                "/static/mahjong_pics_v1/7_bamboo.jpg",
+                "/static/mahjong_pics_v1/8_bamboo.jpg",
+                "/static/mahjong_pics_v1/9_bamboo.jpg",
+                "/static/mahjong_pics_v1/1_wan.jpg",
+                "/static/mahjong_pics_v1/2_wan.jpg",
+                "/static/mahjong_pics_v1/3_wan.jpg",
+                "/static/mahjong_pics_v1/4_wan.jpg",
+                "/static/mahjong_pics_v1/5_wan.jpg",
+                "/static/mahjong_pics_v1/6_wan.jpg",
+                "/static/mahjong_pics_v1/7_wan.jpg",
+                "/static/mahjong_pics_v1/8_wan.jpg",
+                "/static/mahjong_pics_v1/9_wan.jpg",
+                "/static/mahjong_pics_v1/blue_1_flower.jpg",//blue 1 hua
+                "/static/mahjong_pics_v1/blue_2_flower.jpg",
+                "/static/mahjong_pics_v1/blue_3_flower.jpg",
+                "/static/mahjong_pics_v1/blue_4_flower.jpg",
+                "/static/mahjong_pics_v1/red_1_flower.jpg",//red 1 hua
+                "/static/mahjong_pics_v1/red_2_flower.jpg",
+                "/static/mahjong_pics_v1/red_3_flower.jpg",
+                "/static/mahjong_pics_v1/red_4_flower.jpg",
+                "/static/mahjong_pics_v1/cat.jpg",//cat
+                "/static/mahjong_pics_v1/mouse.jpg",//mouse
+                "/static/mahjong_pics_v1/caterpillar.jpg",//caterpillar
+                "/static/mahjong_pics_v1/chicken.jpg",//chicken
+                "/static/mahjong_pics_v1/dong_feng.jpg", //dong
+                "/static/mahjong_pics_v1/nan_feng.jpg", //nan
+                "/static/mahjong_pics_v1/xi_feng.jpg", //xi
+                "/static/mahjong_pics_v1/bei_feng.jpg", //bei
+                "/static/mahjong_pics_v1/green_dragon.jpg",//green dragon
+                "/static/mahjong_pics_v1/red_dragon.jpg", //red dragon
+                "/static/mahjong_pics_v1/white_dragon.jpg",//white dragon
+                "/static/mahjong_pics_v1/red_circle.png", //red_circle for discard
+                "/static/mahjong_pics_v1/red_dice_v.jpg", //red dice vertical
+                "/static/mahjong_pics_v1/red_dice_h.jpg", //red dice horizontal
+                "/static/mahjong_pics_v1/peng_notif.png", //small board for peng notif
+                "/static/mahjong_pics_v1/chi_notif.png", //small board for chi notif
+                "/static/mahjong_pics_v1/gang_notif.JPG", //gang notif
+                "/static/mahjong_pics_v1/hu_notif.png",
+                "/static/mahjong_pics_v1/end_game_tai.png",
+                "/static/mahjong_pics_v1/peng_overlay.PNG"
+
+            )
+        </script>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">SG Mahjong online</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Scoring
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item">
+                            Currently is all pay, future updates may bring about the option for shooter pay
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">1 台 = 10/20 points</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">
+                            Currently only these are supported:<br />
+                            碰碰胡 - 2 台<br />
+                            半色 - 2 台<br />
+                            一色 - 4 台<br />
+                            臭平胡 - 1 台<br />
+                            平胡 - 4 台<br />
+                            混老头 - 4 台<br />
+                            清老头 - 5 台<br />
+                            十三幺 - 5 台<br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">
+                            *咬到 - 10 points<br />
+                            *正花 - 10 points<br />
+                            *一台花 - 10 points<br />
+                            *明杠 - 10 points<br />
+                            *暗杠 - 20 points<br />
+                            *Calculated at the end of a round<br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">For any feedback/issues, please email us at mahjongsgbeta@gmail.com</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Controls
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">
+                            1-1st Tile Discard <br />
+                            2-2nd Tile Discard<br />
+                            3-3rd Tile Discard<br />
+                            4-4th Tile Discard<br />
+                            5-5th Tile Discard<br />
+                            6-6th Tile Discard<br />
+                            7-7th Tile Discard<br />
+                            8-8th Tile Discard<br />
+                            9-9th Tile Discard<br />
+                            0-10th Tile Discard<br />
+                            Q-11th Tile Discard<br />
+                            W-12th Tile Discard<br />
+                            E-13th Tile Discard<br />
+                            R-14th Tile Discard<br />
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">P - 碰 (if valid)<br /></a>
+                        <a class="dropdown-item">G - 槓 (if valid)<br /></a>
+                        <a class="dropdown-item">
+                            Z - 吃. Take Discard Tile, use as left (6 discarded, forms 678)<br />
+                            X - 吃. Take Discard Tile, use as middle (7 discarded, forms 678)<br />
+                            C - 吃. Take Discard Tile, use as right (8 discarded, forms 678)<br />
+                        </a>
+                        <a class="dropdown-item"> H - 胡 (if valid)<br /></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">Note: The dealer is identified by the person holding the red dice. </a>
+                        <a class="dropdown-item">Note: If a user leaves the room, the game will stop and be restarted, <br/> even if the same user joins the room again.</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="how-to-play">How to play</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="terms">Terms & Conditions</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <img src="/static/mahjong_pics_v1/your_ad_here.png", alt="Adspace" id="banner_ad" style="display:block; margin:auto; margin-top:1em; width:42em; height:7em;"/>
+    
+    <div style="text-align: center; display: none; padding-top: 20px; margin: auto;" id="canvas_block" >
+        <canvas id="myCanvas"></canvas>
+    </div>
+    <div id="box">
+        <p id="chat">
+            Chat with the room! <br />
+            -------------------------------
+        </p>
+        <div id="chat_form">
+            <button type="button" onclick="chat('😁')">😁</button>
+            <button type="button" onclick="chat('😡')">😡</button>
+            <button type="button" onclick="chat('🙄')">🙄</button>
+            <button type="button" onclick="chat('😱')">😱</button>
+            <button type="button" onclick="chat('💤')">💤</button>
+            <button type="button" onclick="chat('🤑')">🤑</button>
+            <button type="button" onclick="chat('🤯')">🤯</button>
+            <button type="button" onclick="chat('😂')">😂</button>
+            <button type="button" onclick="chat('🤮')">🤮</button>
+            <button type="button" onclick="chat('💩')">💩</button>
+            <button type="button" onclick="chat('Im calling!')">Im calling!</button>
+            <button type="button" onclick="chat('Be careful!')">Be careful!</button>
+            <button type="button" onclick="chat('Bad hand...')">Bad hand...</button>
+            <button type="button" onclick="chat('hahaha')">hahaha</button>
+        </div>
+    </div>
+    <div id="input_mobile" style="display:none;">
+        <button type="button" onclick="make_discard(0)" style="margin:8px 8px 8px 8px;">1</button>
+        <button type="button" onclick="make_discard(1)" style="margin:8px 8px 8px 8px;">2</button>
+        <button type="button" onclick="make_discard(2)" style="margin:8px 8px 8px 8px;">3</button>
+        <button type="button" onclick="make_discard(3)" style="margin:8px 8px 8px 8px;">4</button>
+        <button type="button" onclick="make_discard(4)" style="margin:8px 8px 8px 8px;">5</button>
+        <button type="button" onclick="make_discard(5)" style="margin:8px 8px 8px 8px;">6</button>
+        <button type="button" onclick="make_discard(6)" style="margin:8px 8px 8px 8px;">7</button>
+        <button type="button" onclick="make_discard(7)" style="margin:8px 8px 8px 8px;">8</button>
+        <button type="button" onclick="make_discard(8)" style="margin:8px 8px 8px 8px;">9</button>
+        <button type="button" onclick="make_discard(9)" style="margin:8px 8px 8px 8px;">0</button>
+        <button type="button" onclick="make_discard(10)" style="margin:8px 8px 8px 8px;">Q</button>
+        <button type="button" onclick="make_discard(11)" style="margin:8px 8px 8px 8px;">W</button>
+        <button type="button" onclick="make_discard(12)" style="margin:8px 8px 8px 8px;">E</button>
+        <button type="button" onclick="make_discard(13)" style="margin:8px 8px 8px 8px;">R</button>
+        <br/>
+        <button type="button" onclick="make_peng()" style="margin:8px 8px 8px 8px;">P</button>
+        <button type="button" onclick="make_chi('left')" style="margin:8px 8px 8px 8px;">Z</button>
+        <button type="button" onclick="make_chi('center')" style="margin:8px 8px 8px 8px;">X</button>
+        <button type="button" onclick="make_chi('right')" style="margin:8px 8px 8px 8px;">C</button>
+        <button type="button" onclick="make_gang()" style="margin:8px 8px 8px 8px;">G</button>
+        <button type="button" onclick="hu()" style="margin:8px 8px 8px 8px;">H</button>
+    </div>
+    <div class="mx-auto alert alert-info" role="alert">
+        <p id="info"> This is a page to play multiplayer Singapore Mahjong online! Please click the links at the top of the page to learn about how to play, scoring and controls.</p>
+        <hr>
+        <p class="mb-0" id="tiles_left">This will display the number of tiles left before the end of the round.</p>
+    </div>
+
+    <div style="text-align: center; display: inline-block; padding-top:20px; margin:auto;" id="name_block">
+        <form onsubmit="greet(); return false;">
+            <input type="text" , id="name" placeholder="Your name/alias" />
+            <input type="submit" />
+        </form>
+    </div>
+    <div style="text-align: center; display: none; padding-top:20px; margin:auto;" id="password_block">
+        <form onsubmit="dev_login(); return false;">
+            <input type="text" , id="password" placeholder="Password" />
+            <input type="submit" />
+        </form>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <table class="table" style="text-align:center; display:inline-block; margin:auto;" id="table_block">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Room Number</th>
+                        <th scope="col">Room type</th>
+                        <th scope="col">No. of players</th>
+                        <th scope="col">Player names</th>
+                        <th scope="col">Shooter pay all</th>
+                        <th scope="col"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Fast</td>
+                        <td id="1_num">0</td>
+                        <td id="1_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="1_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="1_button" onclick="join('1', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Fast</td>
+                        <td id="2_num">0</td>
+                        <td id="2_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="2_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="2_button" onclick="join('2', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Fast</td>
+                        <td id="3_num">0</td>
+                        <td id="3_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="3_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="3_button" onclick="join('3', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Fast</td>
+                        <td id="4_num">0</td>
+                        <td id="4_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="4_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="4_button" onclick="join('4', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>Fast</td>
+                        <td id="5_num">0</td>
+                        <td id="5_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="5_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="5_button" onclick="join('5', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>Fast</td>
+                        <td id="6_num">0</td>
+                        <td id="6_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="6_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="6_button" onclick="join('6', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>Fast</td>
+                        <td id="7_num">0</td>
+                        <td id="7_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="7_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="7_button" onclick="join('7', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>Fast</td>
+                        <td id="8_num">0</td>
+                        <td id="8_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="8_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="8_button" onclick="join('8', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>Fast</td>
+                        <td id="9_num">0</td>
+                        <td id="9_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="9_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="9_button" onclick="join('9', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>Fast</td>
+                        <td id="10_num">0</td>
+                        <td id="10_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="10_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="10_button" onclick="join('10', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>Slow</td>
+                        <td id="11_num">0</td>
+                        <td id="11_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="11_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="11_button" onclick="join('11', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>Slow</td>
+                        <td id="12_num">0</td>
+                        <td id="12_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="12_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="12_button" onclick="join('12', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">13</th>
+                        <td>Slow</td>
+                        <td id="13_num">0</td>
+                        <td id="13_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="13_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="13_button" onclick="join('13', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">14</th>
+                        <td>Slow</td>
+                        <td id="14_num">0</td>
+                        <td id="14_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="14_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="14_button" onclick="join('14', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">15</th>
+                        <td>Slow</td>
+                        <td id="15_num">0</td>
+                        <td id="15_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="15_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="15_button" onclick="join('15', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">16</th>
+                        <td>Super fast</td>
+                        <td id="16_num">0</td>
+                        <td id="16_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="16_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="16_button" onclick="join('16', 'super-fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">17</th>
+                        <td>Super fast</td>
+                        <td id="17_num">0</td>
+                        <td id="17_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="17_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="17_button" onclick="join('17', 'super-fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">18</th>
+                        <td>Fast</td>
+                        <td id="18_num">0</td>
+                        <td id="18_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="18_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="18_button" onclick="join('18', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">19</th>
+                        <td>Fast</td>
+                        <td id="19_num">0</td>
+                        <td id="19_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="19_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="19_button" onclick="join('19', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">20</th>
+                        <td>Fast</td>
+                        <td id="20_num">0</td>
+                        <td id="20_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="20_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="20_button" onclick="join('20', 'fast')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">21</th>
+                        <td>Slow</td>
+                        <td id="21_num">0</td>
+                        <td id="21_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="21_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="21_button" onclick="join('21', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">22</th>
+                        <td>Slow</td>
+                        <td id="22_num">0</td>
+                        <td id="22_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="22_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="22_button" onclick="join('22', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">23</th>
+                        <td>Slow</td>
+                        <td id="23_num">0</td>
+                        <td id="23_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="23_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="23_button" onclick="join('23', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">24</th>
+                        <td>Slow</td>
+                        <td id="24_num">0</td>
+                        <td id="24_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="24_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="24_button" onclick="join('24', 'slow')">Join</button></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">25</th>
+                        <td>Slow</td>
+                        <td id="25_num">0</td>
+                        <td id="25_names">-</td>
+                        <td id="shooter_option">
+                            <form>
+                                <input type="checkbox" id="25_checkbox">
+                            </form>
+                        </td>
+                        <td><button id="25_button" onclick="join('25', 'slow')">Join</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <form onsubmit="dev_allrooms(); return false;" id="dev_form" style="display:none;">
+        <input type="text" id="broadcast_text" placeholder="To all rooms" size="15" />
+        <input type="submit" value="Broadcast" />
+    </form>
+    <script src="../static/game_modified.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    var vglnk = {key: '6baca3d4de7ea1a8078920276751ed3e'};
+    (function(d, t) {
+        var s = d.createElement(t);
+            s.type = 'text/javascript';
+            s.async = true;
+            s.src = '//cdn.viglink.com/api/vglnk.js';
+        var r = d.getElementsByTagName(t)[0];
+            r.parentNode.insertBefore(s, r);
+    }(document, 'script'));
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 {
-  "name": "socket-chat-example",
-  "version": "0.0.1",
-  "description": "my first socket.io app",
+  "name": "SG Mahjong",
+  "version": "1.05",
+  "description": "Play Singaporean Mahjong with friends and strangers alike!",
   "dependencies": {
     "express": "^4.17.1",
     "http": "0.0.1-security",
